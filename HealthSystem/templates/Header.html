@@ -22,11 +22,19 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="{% url 'home' %}">Home</a></li>
-          <li class="selected"><a href="{% url 'checkyourhealth' %}">Check Your Health</a></li>
-          <li class="selected"><a href="{% url 'Reg' %}">Registeration</a></li>
-          <li class="selected"><a href="{% url 'login' %}">Login</a></li>
-          <li class="selected"><a href="{% url 'contactus' %}">Contact Us</a></li>
+          <li class="selected"><a href="/home">Home</a></li>
+          <li class="selected"><a href="/health">Check Your Health</a></li>
+          <li class="selected"><a href="/contactus">Contact Us</a></li>
+
+
+          {% if user.is_authenticated %}
+          <li>Hello,{{user.first_name}}</li>
+          <li class="selected"><a href="/logout">Logout</a></li>
+          {% else %}
+          <li class="selected"><a href="/registration">Registeration</a></li>
+          <li class="selected"><a href="/login">Login</a></li>
+          {%endif%}
+
         </ul>
       </div>
     </div>

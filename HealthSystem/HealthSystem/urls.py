@@ -19,9 +19,11 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('calc.urls')),
-    path('checkyourhealth',include('calc.urls')),
-    path('Reg',include('calc.urls')),
-    path('contactus',include('calc.urls')),
-    path('home',include('calc.urls')),
-    path('login',include('calc.urls')),
+    path('/',include('calc.urls')),
+    #path('model/',)
+    #path('Reg',include('calc.urls')),
+    #path('contactus',include('calc.urls')),
+    #path('home',include('calc.urls')),
+    #path('login',include('calc.urls')),
+    #path('p/',include('accounts.urls')),
 ]

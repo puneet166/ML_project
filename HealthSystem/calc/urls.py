@@ -1,13 +1,23 @@
 from django.urls import path
-
-from . import views
+from rest_framework import routers
+from calc import views
+from django.contrib import admin
+from django.urls.conf import include
+#from api import views
+router=routers.DefaultRouter()
+router.register('model',views.diabetesViewSet)
 urlpatterns=[
     path('',views.home,name=''),
-    path('',views.home,name='home'),
-    path('health',views.checkyourhealth, name='checkyourhealth'),
-    path('registration',views.registration, name='Reg'),
+    path('home',views.home,name='home'),
+    path('health',views.checkyourhealth, name='health'),
     path('contactus',views.contactus, name='contactus'),
-    path('logingo',views.login, name='login'),
+    path('registration',views.registration, name='registration'),
+    path('login',views.login, name='login'),
+    path('logout',views.logout, name='logout'),
+    path('model',include(router.urls)),
+    #pat,views.logout, name='logout'),
+    
+    
     
 
 ]
