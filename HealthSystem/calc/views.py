@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
 from calc.serializers import diabetesSerializer
 from calc.models import diabetes
+from calc import diabetesmodel
+import pandas as pd
 
 # Create your views here.
 def home (request):
@@ -65,10 +67,16 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-class diabetesViewSet(viewsets.ModelViewSet):
-    queryset=diabetes.objects.all()
-    serializer_class=diabetesSerializer
-    #def create(self,request):
+class diabetesViewSet(viewsets.ModelViewSet): #Its Code for API now here Create API of Machine Learning
+            queryset=diabetes.objects.all() #take all objects mean all field 
+            serializer_class=diabetesSerializer
+
+    
+
+    #def create(self,request,*args,**kwargs):#override Create method of ViewSet
+     #   ob= diabetes.objects.latest("id")#its for fetch lastest record from diabetes table database
+      #  print(type(ob))
+       # yes=diabetesmodel.prediction(ob)#its pass data of lastest rows to the model for prediction
      #   if request.method=='GET':
         #senetence is the query we want to get the predicition for
        #     params=request.GET.get('sentence')
@@ -78,3 +86,54 @@ class diabetesViewSet(viewsets.ModelViewSet):
       #      return JsonResponse(response)
    # queryset=diabetes.objects.all()
     #serializer_class=diabetesSerializers
+def checkdiabetes(request):
+    if request.method== 'POST':
+
+        Pregnancies=request.POST['Pregnancies']
+        Glucose=request.POST['Glucose']
+        BloodPressure=request.POST['BloodPressure']
+        SkinThickness=request.POST['SkinThickness']
+        Insulin=request.POST['Insulin']
+        BMI=request.POST['BMI']
+        DiabetesPedigreeFunction=request.POST['DiabetesPedigreeFunction']
+        Age=request.POST['Age']
+        #convert into integer
+        Pregnancies=int(Pregnancies)
+        Glucose=int(Glucose)
+        BloodPressure=int(BloodPressure)
+        SkinThickness=int(SkinThickness)
+        Insulin=int(Insulin)
+        BMI=float(BMI)
+        DiabetesPedigreeFunction=float(DiabetesPedigreeFunction)
+        Age=int(Age)
+
+
+
+
+        x = [[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]]#problem is here
+        
+
+        #myDict=(request.POST).dict()
+        df=pd.DataFrame(x,index=[0])
+        pre=diabetesmodel.prediction(df)
+        dia=diabetes.objects.create(Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,SkinThickness=SkinThickness,Insulin=Insulin,BMI=BMI,DiabetesPedigreeFunction=DiabetesPedigreeFunction,Age=Age,Outcome=pre)
+        dia.save();
+
+
+        for i in pre:
+            if i==0:
+                return render(request,'result1.html')
+
+                
+            else:
+               return render(request,'result.html')
+
+        return redirect("checkdiabetes")
+        #print(df)
+        #print(type(df))
+        #return redirect('/')
+    else:
+        return render(request,'diabetes.html')
+
+def check (request):
+    return render(request,'result.html')

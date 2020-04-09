@@ -26,6 +26,7 @@ SECRET_KEY = '3l(nth0*2ce*3hq_!$qz)g&sqahg93p781#-(5we44m)dr-9md'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CRISPY_TEMPLATE_PACK= 'bootstrap4'
 
 
 # Application definition
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'calc',
     'rest_framework',
+    'crispy_forms',
+
     
 ]
 

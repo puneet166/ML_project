@@ -1,0 +1,67 @@
+{% extends 'Header.html' %}
+{%block index %}
+
+<div class="container">
+            <form class="modal-content animate2" role="form" action="checkdiabetes" method="POST">
+               {% csrf_token %}
+                <h2> CHECK DIABETES USING NUREAL NETWORK</h2>
+                <div class="form-group">
+                    <label for="Pregnancies" class="col-sm-3 control-label">Pregnancies*</label>
+                    <div class="col-sm-9">
+                        <input type="number"  name="Pregnancies"  placeholder="Pregnancies" class="form-control" required  min="0" max="17" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Glucose" class="col-sm-3 control-label">Glucose*</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="Glucose" placeholder="Glucose" class="form-control" required  min="0" max="199">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="BloodPressure" class="col-sm-3 control-label">BloodPressure* </label>
+                    <div class="col-sm-9">
+                        <input type="number" name="BloodPressure" placeholder="BloodPressure" class="form-control" required  min="0" max="150">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="SkinThickness" class="col-sm-3 control-label">SkinThickness*</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="SkinThickness" placeholder="SkinThickness" class="form-control" required  min="0" max="99">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Insulin" class="col-sm-3 control-label">Insulin*</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="Insulin" placeholder="Insulin" class="form-control" required  min="0" max="1000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="BMI" class="col-sm-3 control-label">BMI*</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="BMI"  placeholder="BMI" class="form-control" step="0.01" min="0" max="70">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DiabetesPedigreeFunction" class="col-sm-3 control-label">DiabetesPedigreeFunction* </label>
+                    <div class="col-sm-9">
+                        <input type="number" name="DiabetesPedigreeFunction" placeholder="DiabetesPedigreeFunction" class="form-control" step="0.01" min="0" max="3">
+                       
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Age" class="col-sm-3 control-label">Age* </label>
+                    <div class="col-sm-9">
+                        <input type="number" name="Age" placeholder="Age" class="form-control"required  min="15" max="100">
+                    </div>
+                </div>
+                 
+                <button type="submit" class="btn btn-primary btn-block">CHECK</button>
+                <div>
+                  {% for message in messages %}
+                  <h3>{{message}}</h3>
+                  {% endfor %}
+                </div>
+            </form> <!-- /form -->
+        </div> <!-- ./container -->
+
+{% endblock %}

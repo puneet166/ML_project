@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Create your models here. its model mean table will created in database
  #class Registration(models.Model):
   #  Firstname=models.CharField(max_length=200)
    # Lastname=models.CharField(max_length=200)
@@ -14,9 +14,11 @@ class diabetes(models.Model):
     BloodPressure=models.IntegerField()
     SkinThickness=models.IntegerField()
     Insulin=models.IntegerField()
-    BMI=models.IntegerField()
-    DiabetesPedigreeFunction=models.IntegerField()
+    BMI=models.FloatField()
+    DiabetesPedigreeFunction=models.FloatField()
     Age=models.IntegerField()
+    Outcome=models.IntegerField(default=2)
+    
 
     #now convert into dic for deal with dataframe in pandas
 

@@ -1,11 +1,12 @@
 from django.urls import path
-from rest_framework import routers
+from rest_framework import routers #import Routers
 from calc import views
 from django.contrib import admin
 from django.urls.conf import include
-#from api import views
-router=routers.DefaultRouter()
-router.register('model',views.diabetesViewSet)
+from django.views.generic.base import RedirectView
+#routers use for create API of Machine Learning for connect ML model
+router=routers.DefaultRouter() #decalare routers
+router.register('diabetes',views.diabetesViewSet) #Register your routers
 urlpatterns=[
     path('',views.home,name=''),
     path('home',views.home,name='home'),
@@ -14,10 +15,13 @@ urlpatterns=[
     path('registration',views.registration, name='registration'),
     path('login',views.login, name='login'),
     path('logout',views.logout, name='logout'),
-    path('model',include(router.urls)),
+    path('checkdiabetes',views.checkdiabetes, name='checkdiabetes'),
+    
+    path('api',include(router.urls)), #its for API Routers
+    #path('model',views.create),
     #pat,views.logout, name='logout'),
     
     
-    
+    path('check',views.check,name='check'),
 
 ]
