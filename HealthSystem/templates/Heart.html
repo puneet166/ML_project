@@ -1,0 +1,135 @@
+{% extends 'Header.html' %}
+{%block index %}
+
+<div class="container">
+            <form class="modal-content animate2" role="form" action="checkheart" method="POST">
+               {% csrf_token %}
+                <h2> CHECK HEART USING NUREAL NETWORK</h2>
+                <div class="form-group">
+                    <label for="age" class="col-sm-3 control-label">age*</label>
+                    <div class="col-sm-9">
+                        <input type="number"  name="age"  placeholder="Enter Age" class="form-control" required  min="20" max="90" >
+                    </div>
+                </div>
+                <div class="form-group">
+                <label for="sex" class="col-sm-3 control-label">Gender*</label>
+                <div class="col-sm-9">
+                <select class="col-sm-8" name = "drop1">
+                    <option selected="selected" disabled>Select Option </option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                  </select>
+                </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cp" class="col-sm-3 control-label">Chest-pain*</label>
+                    <div class="col-sm-9">
+                    <select class="col-sm-8" name = "drop2">
+                        <option selected="selected" disabled>Select Option </option>
+                        <option value="1"> Typical angina</option>
+                        <option value="2"> Atypical angina</option>
+                        <option value="3">  Non Anginal </option>
+                        <option value="4"> Asymptotic</option>
+                      </select>
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <label for="trestbps" class="col-sm-3 control-label">Resting Blood Pressure*</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="trestbps" placeholder="Resting Blood Pressure" class="form-control" required  min="50" max="200">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="chol" class="col-sm-3 control-label">Serum Cholestrol*</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="chol" placeholder="Serum Cholestrol" class="form-control" required  min="120" max="700">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fbs" class="col-sm-3 control-label">Fasting Blood Sugar*</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="fbs"  placeholder="Fasting Blood Sugar" class="form-control"  min="0" max="300">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="restecg" class="col-sm-3 control-label">Resting ECG*</label>
+                    <div class="col-sm-9">
+                    <select class="col-sm-8" name = "drop3">
+                        <option selected="selected" disabled>Select Option </option>
+                        <option value="0"> Normal</option>
+                        <option value="1"> Having ST-T wave abnormality</option>
+                        <option value="2"> Left ventricular hyperthrophy </option>
+                      </select>
+                    </div>
+                    </div>
+                <div class="form-group">
+                        <label for="thalach" class="col-sm-3 control-label">Max heart rate achieved* </label>
+                    <div class="col-sm-9">
+                        <input type="number" name="thalach" placeholder="Max heart rate achieved" class="form-control"required  min="50" max="250">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exang" class="col-sm-3 control-label">Xercise induced angina*</label>
+                    <div class="col-sm-9">
+                    <select class="col-sm-8" name = "drop4">
+                        <option selected="selected" disabled>Select Option </option>
+                        <option value="1"> Yes</option>
+                        <option value="0"> No</option>
+                        
+                      </select>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="oldpeak" class="col-sm-3 control-label">ST depression induced by exercise relative to rest*</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="oldpeak"  placeholder="ST depression induced by exercise relative to rest" class="form-control" step="0.01" min="0" max="8">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="slope" class="col-sm-3 control-label">Peak exercise ST segment *</label>
+                        <div class="col-sm-9">
+                        <select class="col-sm-8" name = "drop5">
+                            <option selected="selected" disabled>Select Option </option>
+                            <option value="1"> upsloping</option>
+                            <option value="2"> flat</option>
+                            <option value="3"> downsloping</option>
+                            
+                          </select>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ca" class="col-sm-3 control-label">Number of major vessels (0–3) colored by flourosopy </label>
+                            <div class="col-sm-9">
+                            <select class="col-sm-8" name = "drop6">
+                                <option selected="selected" disabled>Select Option </option>
+                                <option value="1"> upsloping</option>
+                                <option value="2"> flat</option>
+                                <option value="3"> downsloping</option>
+                                
+                              </select>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="thal" class="col-sm-3 control-label">Thalassemia  </label>
+                                <div class="col-sm-9">
+                                <select class="col-sm-8" name = "drop7">
+                                    <option selected="selected" disabled>Select Option </option>
+                                    <option value="1"> upsloping</option>
+                                    <option value="2"> flat</option>
+                                    <option value="3"> downsloping</option>
+                                    
+                                  </select>
+                                </div>
+                                </div>
+                 
+                <button type="submit" class="btn btn-primary btn-block">CHECK</button>
+                <div>
+                  {% for message in messages %}
+                  <h3>{{message}}</h3>
+                  {% endfor %}
+                </div>
+            </form> <!-- /form -->
+        </div> <!-- ./container -->
+
+{% endblock %}

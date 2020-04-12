@@ -33,5 +33,22 @@ def to_dict(self):
         'DiabetesPedigreeFunction':self.DiabetesPedigreeFunction,
         'Age':self.Age
             }    
+
+class heart(models.Model):
+    age=models.IntegerField()
+    sex=models.IntegerField()
+    cp=models.IntegerField()
+    trestbps=models.IntegerField()
+    chol=models.IntegerField()
+    fbs=models.IntegerField()
+    restecg=models.IntegerField()
+    thalach=models.IntegerField()
+    exang=models.IntegerField()
+    oldpeak=models.FloatField()
+    slope=models.IntegerField()
+    ca=models.IntegerField()
+    thal=models.IntegerField()
+    target=models.IntegerField(default=2)
+    
     
     

@@ -29,6 +29,17 @@
 </head>
 
 <body>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+  
+ 
   <div id="main">
     <div id="header">
       <div id="logo">
@@ -38,20 +49,26 @@
           <h2>AI Enable Healthcare System</h2>
         </div>
       </div>
+     
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="/home">Home</a></li>
-          <li class="selected"><a href="/health">Check Your Health</a></li>
-          <li class="selected"><a href="/contactus">Contact Us</a></li>
+          <a class="btn btn-primary" href="/home" role="button">Home</a>
+          <a class="btn btn-primary" href="/health" role="button">Check Your Health</a>
+          <a class="btn btn-primary" href="/contactus" role="button">Contact Us</a>
+
+
 
 
           {% if user.is_authenticated %}
           <li>Hello,{{user.first_name}}</li>
-          <li class="selected"><a href="/logout">Logout</a></li>
+          <a class="btn btn-primary" href="/logout" role="button">LogOut</a>
+
           {% else %}
-          <li class="selected"><a href="/registration">Registeration</a></li>
-          <li class="selected"><a href="/login">Login</a></li>
+          <a class="btn btn-primary" href="/registration" role="button">Registration</a>
+
+          <a class="btn btn-primary" href="/login" role="button">Login</a>
+
           {%endif%}
 
         </ul>

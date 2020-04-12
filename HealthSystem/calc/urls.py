@@ -16,6 +16,7 @@ urlpatterns=[
     path('login',views.login, name='login'),
     path('logout',views.logout, name='logout'),
     path('checkdiabetes',views.checkdiabetes, name='checkdiabetes'),
+     path('checkheart',views.checkheart, name='checkheart'),
     
     path('api',include(router.urls)), #its for API Routers
     #path('model',views.create),

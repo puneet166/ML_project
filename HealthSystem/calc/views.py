@@ -87,53 +87,97 @@ class diabetesViewSet(viewsets.ModelViewSet): #Its Code for API now here Create 
    # queryset=diabetes.objects.all()
     #serializer_class=diabetesSerializers
 def checkdiabetes(request):
-    if request.method== 'POST':
-
-        Pregnancies=request.POST['Pregnancies']
-        Glucose=request.POST['Glucose']
-        BloodPressure=request.POST['BloodPressure']
-        SkinThickness=request.POST['SkinThickness']
-        Insulin=request.POST['Insulin']
-        BMI=request.POST['BMI']
-        DiabetesPedigreeFunction=request.POST['DiabetesPedigreeFunction']
-        Age=request.POST['Age']
-        #convert into integer
-        Pregnancies=int(Pregnancies)
-        Glucose=int(Glucose)
-        BloodPressure=int(BloodPressure)
-        SkinThickness=int(SkinThickness)
-        Insulin=int(Insulin)
-        BMI=float(BMI)
-        DiabetesPedigreeFunction=float(DiabetesPedigreeFunction)
-        Age=int(Age)
+    if  request.user.is_authenticated:
 
 
+        if request.method== 'POST':
+
+            Pregnancies=request.POST['Pregnancies']
+            Glucose=request.POST['Glucose']
+            BloodPressure=request.POST['BloodPressure']
+            SkinThickness=request.POST['SkinThickness']
+            Insulin=request.POST['Insulin']
+            BMI=request.POST['BMI']
+            DiabetesPedigreeFunction=request.POST['DiabetesPedigreeFunction']
+            Age=request.POST['Age']
+            #convert into integer
+            Pregnancies=int(Pregnancies)
+            Glucose=int(Glucose)
+            BloodPressure=int(BloodPressure)
+            SkinThickness=int(SkinThickness)
+            Insulin=int(Insulin)
+            BMI=float(BMI)
+            DiabetesPedigreeFunction=float(DiabetesPedigreeFunction)
+            Age=int(Age)
 
 
-        x = [[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]]#problem is here
+
+
+            x = [[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]]#problem is here
         
 
-        #myDict=(request.POST).dict()
-        df=pd.DataFrame(x,index=[0])
-        pre=diabetesmodel.prediction(df)
-        dia=diabetes.objects.create(Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,SkinThickness=SkinThickness,Insulin=Insulin,BMI=BMI,DiabetesPedigreeFunction=DiabetesPedigreeFunction,Age=Age,Outcome=pre)
-        dia.save();
+            #myDict=(request.POST).dict()
+            df=pd.DataFrame(x,index=[0])
+            pre=diabetesmodel.prediction(df)
+            dia=diabetes.objects.create(Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,SkinThickness=SkinThickness,Insulin=Insulin,BMI=BMI,DiabetesPedigreeFunction=DiabetesPedigreeFunction,Age=Age,Outcome=pre)
+            dia.save();
 
 
-        for i in pre:
-            if i==0:
-                return render(request,'result1.html')
+            for i in pre:
+                if i==0:
+                    return render(request,'diabetes_output.html')
 
                 
-            else:
-               return render(request,'result.html')
+                else:
+                    return render(request,'diabetes_output1.html')
 
-        return redirect("checkdiabetes")
+            return redirect("checkdiabetes")
         #print(df)
         #print(type(df))
         #return redirect('/')
+        else:
+            return render(request,'diabetes.html')
     else:
-        return render(request,'diabetes.html')
+         return redirect('login')
 
+def checkheart(request):
+    if request.method== 'POST':
+            age=request.POST['age']
+            sex=request.POST['drop1']
+            cp=request.POST['drop2']
+            trestbps=request.POST['trestbps']
+            chol=request.POST['chol']
+            fbs=request.POST['fbs']
+            restecg=request.POST['drop3']
+            thalach=request.POST['thalach']
+            exang=request.POST['drop4']
+            oldpeak=request.POST['oldpeak']
+            slope=request.POST['drop5']
+            ca=request.POST['drop6']
+            thal=request.POST['drop7']
+
+
+            age=int(age)
+            sex=int(sex)
+            cp=int(cp)
+            trestbps=int(trestbps)
+            chol=int(chol)
+            fbs=int(fbs)
+            if fbs >120:
+                fbs=1
+            else:
+                fbs=0
+            restecg=int(restecg)
+            thalach=int(thalach)
+            exang=int(exang)
+            oldpeak=float(oldpeak)
+            slope=int(slope)
+            ca=int(ca)
+            thal=int(thal)
+            x = [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]]
+            print(x)
+    else:
+            return render(request,'heart.html')
+           
 def check (request):
-    return render(request,'result.html')
+    return render(request,'heart.html')
