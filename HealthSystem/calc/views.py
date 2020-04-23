@@ -4,9 +4,11 @@ from rest_framework import viewsets
 from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
 from calc.serializers import diabetesSerializer
-from calc.models import diabetes
+from calc.models import diabetes,heart
 from calc import diabetesmodel
 import pandas as pd
+from calc import models_heart
+
 
 # Create your views here.
 def home (request):
@@ -175,7 +177,27 @@ def checkheart(request):
             ca=int(ca)
             thal=int(thal)
             x = [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]]
-            print(x)
+            df=pd.DataFrame(x,index=[0])
+            pre=models_heart.prediction(df)
+            dia=heart.objects.create(age=age,sex=sex,cp=cp,trestbps=trestbps,chol=chol,fbs=fbs,restecg=restecg,thalach=thalach,exang=exang,oldpeak=oldpeak,slope=slope,ca=ca,thal=thal,target=pre)
+            dia.save();
+
+
+            for i in pre:
+                if i==0:
+                    return render(request,'heart_output1.html')
+
+                
+                else:
+                    return render(request,'heart_output2.html')
+
+            return redirect("checkheart")
+        #print(df)
+        #print(type(df))
+        #return redirect('/')
+        
+            
+            
     else:
             return render(request,'heart.html')
            
