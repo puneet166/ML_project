@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h2>Modal Login Form</h2>
+<h2>Member Login</h2>
 
 
   
@@ -16,7 +16,7 @@
     {% csrf_token %}
     <div class="imgcontainer">
       
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      <img src="static/Image/login.png" alt="Avatar" class="avatar">
     </div>
 
     <div class="container">
@@ -43,6 +43,10 @@
       <h3>{{message}}</h3>
       {% endfor %}
     </div>
+    
   </form>
+  {% include "footer.html" %}  
+
+  
 </div>
 {% endblock %}

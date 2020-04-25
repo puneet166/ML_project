@@ -94,23 +94,22 @@ ol li
   margin: 20px auto;}
 
 #main, #logo, #menubar, #site_content, #footer
-{ margin-left: auto; 
-  margin-right: auto;}
+{ }
 
 #header
-{ background: #CCC;
-  border-bottom: 1px solid #CCC;
+{ background: #3c3d41;
+  border-bottom: 1px solid #3c3d41;
   height: 186px;}
   
 #banner
 {  background: transparent url(banner.jpg) no-repeat;
-  width: 860px;
+  
   height: 180px;
   margin-bottom: 20px;
   border: 10px solid #DDD;}
 
 #logo
-{ width: 880px;
+{
   position: relative;
   height: 140px;
   background: #F5F5F5;}
@@ -147,8 +146,8 @@ ol li
 { width: 872px;
   height: 45px;
   padding-right: 8px;
-  background: #DDD;
-  border-top: 1px solid #CCC;} 
+  background: #3c3d41;
+  border-top: 1px solid b#3c3d41;} 
 
 ul#menu
 { float: right;
@@ -167,9 +166,9 @@ ul#menu li a
   height: 20px;
   padding: 6px 20px 5px 20px;
   text-align: center;
-  color: #FFF;
+  color: #3c3d41;
   text-decoration: none;
-  background: #BBB;} 
+  background: #3c3d41;} 
 
 ul#menu li.selected a
 { height: 20px;
@@ -181,10 +180,10 @@ ul#menu li.selected
 
 ul#menu li.selected a, ul#menu li.selected a:hover
 { background: #00C6F0;
-  color: #FFF;}
+  color: #3c3d41;}
 
 ul#menu li a:hover
-{ color: #323232;}
+{ color: #3c3d41;}
 
 #site_content
 { width: 880px;
@@ -239,29 +238,34 @@ ul#menu li a:hover
   padding: 0 0 4px 25px;
   line-height: 1.5em;}
 
-#footer
-{ width: 100%;
-  font-family: 'trebuchet ms', sans-serif;
-  font-size: 100%;
-  height: 80px;
-  padding: 28px 0 5px 0;
-  text-align: center; 
-  background: #CCC;
-  border-top: 1px solid #AAA;
-  color: #FFF;}
+  
 
-#footer p
-{ line-height: 1.7em;
-  padding: 0 0 10px 0;}
 
-#footer a
-{ color: #FFF;
-  text-decoration: none;}
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
 
-#footer a:hover
-{ color: #00C6F0;
-  text-decoration: none;}
+html{
+    height: 100%;
+}
 
+body{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    height: 100%;
+}
+
+.content{
+   flex: 1 0 auto;
+   -webkit-flex: 1 0 auto;
+   min-height: 200px;
+}
+
+#myFooter{
+   flex: 0 0 auto;
+   -webkit-flex: 0 0 auto;
+}
 .search
 { color: #5D5D5D; 
   border: 1px solid #BBB; 
@@ -506,7 +510,7 @@ button:hover {
 }
 
 img.avatar {
-  width: 40%;
+  width: 20%;
   border-radius: 50%;
 }
 

@@ -49,6 +49,15 @@ class heart(models.Model):
     ca=models.IntegerField()
     thal=models.IntegerField()
     target=models.IntegerField(default=2)
+
+class query(models.Model):
+    Name=models.CharField(max_length=200)
+    Email=models.EmailField(max_length=200)
+    Message=models.CharField(max_length=1000)
+    
+
+
+
     
     
     

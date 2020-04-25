@@ -16,13 +16,16 @@ urlpatterns=[
     path('login',views.login, name='login'),
     path('logout',views.logout, name='logout'),
     path('checkdiabetes',views.checkdiabetes, name='checkdiabetes'),
-     path('checkheart',views.checkheart, name='checkheart'),
+    path('checkheart',views.checkheart, name='checkheart'),
+    path('query',views.query, name='query'),
+    path('diet',views.diet, name='diet'),
+
     
     path('api',include(router.urls)), #its for API Routers
     #path('model',views.create),
     #pat,views.logout, name='logout'),
     
     
-    path('check',views.check,name='check'),
+    #path('check',views.check,name='check'),
 
 ]

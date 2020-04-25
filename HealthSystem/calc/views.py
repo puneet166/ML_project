@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
 from calc.serializers import diabetesSerializer
-from calc.models import diabetes,heart
+from calc.models import diabetes,heart,query
 from calc import diabetesmodel
 import pandas as pd
 from calc import models_heart
@@ -15,8 +15,6 @@ def home (request):
     return render(request,'index.html')
 def checkyourhealth(request):
     return render(request,'checkyourhealth.html')
-def contactus(request):
-    return render(request,'contactus.html')
 
 def registration(request):
     if request.method== 'POST':
@@ -143,63 +141,81 @@ def checkdiabetes(request):
          return redirect('login')
 
 def checkheart(request):
-    if request.method== 'POST':
-            age=request.POST['age']
-            sex=request.POST['drop1']
-            cp=request.POST['drop2']
-            trestbps=request.POST['trestbps']
-            chol=request.POST['chol']
-            fbs=request.POST['fbs']
-            restecg=request.POST['drop3']
-            thalach=request.POST['thalach']
-            exang=request.POST['drop4']
-            oldpeak=request.POST['oldpeak']
-            slope=request.POST['drop5']
-            ca=request.POST['drop6']
-            thal=request.POST['drop7']
+    if  request.user.is_authenticated:
+
+            if request.method== 'POST':
+                age=request.POST['age']
+                sex=request.POST['drop1']
+                cp=request.POST['drop2']
+                trestbps=request.POST['trestbps']
+                chol=request.POST['chol']
+                fbs=request.POST['fbs']
+                restecg=request.POST['drop3']
+                thalach=request.POST['thalach']
+                exang=request.POST['drop4']
+                oldpeak=request.POST['oldpeak']
+                slope=request.POST['drop5']
+                ca=request.POST['drop6']
+                thal=request.POST['drop7']
 
 
-            age=int(age)
-            sex=int(sex)
-            cp=int(cp)
-            trestbps=int(trestbps)
-            chol=int(chol)
-            fbs=int(fbs)
-            if fbs >120:
-                fbs=1
-            else:
-                fbs=0
-            restecg=int(restecg)
-            thalach=int(thalach)
-            exang=int(exang)
-            oldpeak=float(oldpeak)
-            slope=int(slope)
-            ca=int(ca)
-            thal=int(thal)
-            x = [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]]
-            df=pd.DataFrame(x,index=[0])
-            pre=models_heart.prediction(df)
-            dia=heart.objects.create(age=age,sex=sex,cp=cp,trestbps=trestbps,chol=chol,fbs=fbs,restecg=restecg,thalach=thalach,exang=exang,oldpeak=oldpeak,slope=slope,ca=ca,thal=thal,target=pre)
-            dia.save();
+                age=int(age)
+                sex=int(sex)
+                cp=int(cp)
+                trestbps=int(trestbps)
+                chol=int(chol)
+                fbs=int(fbs)
+                if fbs >120:
+                    fbs=1
+                else:
+                    fbs=0
+                restecg=int(restecg)
+                thalach=int(thalach)
+                exang=int(exang)
+                oldpeak=float(oldpeak)
+                slope=int(slope)
+                ca=int(ca)
+                thal=int(thal)
+                x = [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]]
+                df=pd.DataFrame(x,index=[0])
+                pre=models_heart.prediction(df)
+                dia=heart.objects.create(age=age,sex=sex,cp=cp,trestbps=trestbps,chol=chol,fbs=fbs,restecg=restecg,thalach=thalach,exang=exang,oldpeak=oldpeak,slope=slope,ca=ca,thal=thal,target=pre)
+                dia.save();
 
 
-            for i in pre:
-                if i==0:
-                    return render(request,'heart_output1.html')
+                for i in pre:
+                    if i==0:
+                        return render(request,'heart_output1.html')
 
                 
-                else:
-                    return render(request,'heart_output2.html')
+                    else:
+                        return render(request,'heart_output2.html')
 
-            return redirect("checkheart")
+                return redirect("checkheart")
         #print(df)
         #print(type(df))
         #return redirect('/')
         
             
             
+            else:
+                return render(request,'heart.html')
     else:
-            return render(request,'heart.html')
-           
-def check (request):
-    return render(request,'heart.html')
+        return redirect('login')
+
+
+def contactus (request):
+    if request.method== 'POST':
+        Name=request.POST['Name']
+        Email=request.POST['Email']
+        Message=request.POST['Message']
+        query_mess=query.objects.create(Name=Name,Email=Email,Message=Message)
+        query_mess.save();
+        messages.info(request,'Query Submitted Sucessfully our Partner will contact soon on email')
+        return redirect("contactus")
+    else:
+        return render(request,'contactus.html')
+def query(request):
+     return render(request,'diet.html')
+def diet(request):
+     return render(request,'diet.html')
