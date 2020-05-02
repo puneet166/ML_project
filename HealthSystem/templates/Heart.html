@@ -1,12 +1,24 @@
 {% extends 'Header.html' %}
 {%block index %}
+<head>
+    <style>
+    body{
+        background-color: red;
+    }
+</style>
 
+</head>
+<body>
 <div class="container">
             <form class="modal-content animate2" role="form" action="checkheart" method="POST">
                {% csrf_token %}
                 <h2> CHECK HEART USING NUREAL NETWORK</h2>
+                <div class="imgcontainer">
+      
+                    <img src="static/Image/1st.png" alt="Avatar" class="avatar">
+                  </div>
                 <div class="form-group">
-                    <label for="age" class="col-sm-3 control-label">age*</label>
+                    <label for="age" class="col-sm-3 control-label">Age*</label>
                     <div class="col-sm-9">
                         <input type="number"  name="age"  placeholder="Enter Age" class="form-control" required  min="20" max="90" >
                     </div>
@@ -133,5 +145,6 @@
             {% include "footer.html" %}  
 
         </div> <!-- ./container -->
+    </body>
 
 {% endblock %}

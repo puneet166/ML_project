@@ -1,4 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
+
+
 
 # Create your models here. its model mean table will created in database
  #class Registration(models.Model):
@@ -9,6 +14,7 @@ from django.db import models
     #DateTime=models.DateTimeField()
 
 class diabetes(models.Model):
+    sno=models.AutoField(primary_key=True)
     Pregnancies=models.IntegerField()
     Glucose=models.IntegerField()
     BloodPressure=models.IntegerField()
@@ -35,6 +41,7 @@ def to_dict(self):
             }    
 
 class heart(models.Model):
+    sno_heart=models.AutoField(primary_key=True)
     age=models.IntegerField()
     sex=models.IntegerField()
     cp=models.IntegerField()
@@ -49,6 +56,12 @@ class heart(models.Model):
     ca=models.IntegerField()
     thal=models.IntegerField()
     target=models.IntegerField(default=2)
+class role(models.Model):
+    
+
+    role_dia=models.IntegerField()
+    User_mail=models.IntegerField()
+
 
 class query(models.Model):
     Name=models.CharField(max_length=200)

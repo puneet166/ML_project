@@ -1,9 +1,22 @@
 {% extends 'Header.html' %}
 {%block index %}
+<head>
+    <style>
+        body{
+            background-color: blue;
+        }
+    </style>
+    
+</head>
+<body>
 
 <div class="container">
             <form class="modal-content animate2" role="form" action="checkdiabetes" method="POST">
                {% csrf_token %}
+               <div class="imgcontainer">
+      
+                <img src="static/Image/di.png" alt="Avatar" class="avatar">
+              </div>
                 <h2> CHECK DIABETES USING NUREAL NETWORK</h2>
                 <div class="form-group">
                     <label for="Pregnancies" class="col-sm-3 control-label">Pregnancies*</label>
@@ -65,5 +78,6 @@
             {% include "footer.html" %}  
 
         </div> <!-- ./container -->
+    </body>
 
 {% endblock %}

@@ -4,17 +4,18 @@ from rest_framework import viewsets
 from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
 from calc.serializers import diabetesSerializer
-from calc.models import diabetes,heart,query
+from calc.models import diabetes,heart,query,role
 from calc import diabetesmodel
 import pandas as pd
 from calc import models_heart
-
+context={'pi':4}
 
 # Create your views here.
 def home (request):
     return render(request,'index.html')
 def checkyourhealth(request):
     return render(request,'checkyourhealth.html')
+
 
 def registration(request):
     if request.method== 'POST':
@@ -109,8 +110,13 @@ def checkdiabetes(request):
             BMI=float(BMI)
             DiabetesPedigreeFunction=float(DiabetesPedigreeFunction)
             Age=int(Age)
+            global context
 
 
+            
+
+            
+            
 
 
             x = [[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]]#problem is here
@@ -121,7 +127,37 @@ def checkdiabetes(request):
             pre=diabetesmodel.prediction(df)
             dia=diabetes.objects.create(Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,SkinThickness=SkinThickness,Insulin=Insulin,BMI=BMI,DiabetesPedigreeFunction=DiabetesPedigreeFunction,Age=Age,Outcome=pre)
             dia.save();
+            info = diabetes.objects.latest('sno')
+            info=info.sno
+                        
 
+            
+            current_user = request.user
+            current=current_user.id
+            
+
+            curr=User.objects.get(id=current)
+            curr=curr.id
+            
+            dia1=role.objects.create(role_dia=info,User_mail=curr)
+            dia1.save();
+
+
+            Pregnancies=round((Pregnancies*100)/17)
+            Glucose=round((Glucose*100)/200)
+            BloodPressure=round((BloodPressure*100)/150)
+            SkinThickness=round((SkinThickness*100)/100)
+            Insulin=round((Insulin*100)/1000)
+            
+
+            
+
+
+
+
+            context={'Pregnancies':Pregnancies,'Glucose':Glucose,'BloodPressure':BloodPressure,'SkinThickness':SkinThickness,
+            'Insulin':Insulin,'BMI':BMI,'DiabetesPedigreeFunction':DiabetesPedigreeFunction,'Age':Age}
+            print(context)
 
             for i in pre:
                 if i==0:
@@ -139,6 +175,21 @@ def checkdiabetes(request):
             return render(request,'diabetes.html')
     else:
          return redirect('login')
+
+
+def graph(request):
+    if  request.user.is_authenticated:
+
+        if request.method== 'POST':
+            global context
+            
+            return render(request,'graph.html',context)
+
+
+        
+    else:      
+        return render(request,'login.html')
+
 
 def checkheart(request):
     if  request.user.is_authenticated:
@@ -215,7 +266,43 @@ def contactus (request):
         return redirect("contactus")
     else:
         return render(request,'contactus.html')
-def query(request):
-     return render(request,'diet.html')
-def diet(request):
-     return render(request,'diet.html')
+
+        
+def previoushealth(request):
+    listt=[]
+    sum=0   
+    current_user = request.user
+    current=current_user.id
+    #print(type(current))
+    curr=User.objects.get(id=current)
+    #print(type(curr))
+    curr=curr.id
+    #print(type(curr))
+    values = role.objects.filter(User_mail=curr)#its convert into list
+    
+    
+    for value in values.all():
+         pp=value.role_dia
+         listt.append(pp)
+    
+    values = diabetes.objects.get(sno=listt[len(listt)-2])#its convert into list
+    Pregnancies=round((values.Pregnancies*100)/17)
+    Glucose=round((values.Glucose*100)/200)
+    BloodPressure=round((values.BloodPressure*100)/150)
+    SkinThickness=round((values.SkinThickness*100)/100)
+    Insulin=round((values.Insulin*100)/1000)
+    context={'Pregnancies':Pregnancies,'Glucose':Glucose,'BloodPressure':BloodPressure,'SkinThickness':SkinThickness,
+            'Insulin':Insulin,'BMI':values.BMI,'DiabetesPedigreeFunction':values.DiabetesPedigreeFunction,'Age':values.Age}
+    print(context)       
+    return render(request,'graph.html',context)
+        #print(values.BMI)
+         
+
+    
+    
+         
+    
+    
+
+
+     

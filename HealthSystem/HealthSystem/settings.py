@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'calc',
     'rest_framework',
     'crispy_forms',
+    
 
     
 ]
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'HealthSystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'HealthCare',
+        'NAME': 'Puneet',
         'USER':'postgres',
         'PASSWORD':'12345',
         'HOST':'localhost'
