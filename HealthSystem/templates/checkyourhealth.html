@@ -1,5 +1,24 @@
 {% extends 'Header.html' %}
 {%block index %}
+<head>
+  <style>
+    h3{
+      color:Red;
+    }
+    .buttonss {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+  </style>
+</head>
 <div id="site_content">
   <div id="sidebar_container">
     <div class="sidebar">
@@ -16,12 +35,12 @@
     <div class="sidebar">
       <div class="sidebar_top"></div>
       <div class="sidebar_item">
-        <h3>Useful Links</h3>
+        <h3>Check Health</h3>
         <ul>
-          <li><a href="/checkdiabetes">Check your Diabetes</a></li>
-          <li><a href="/checkheart">Check your Heart</a></li>
-          <li><a href="#">link 3</a></li>
-          <li><a href="#">link 4</a></li>
+          <li><a class="buttonss" href="/checkdiabetes">Check your Diabetes</a></li>
+          <li><a  class="buttonss" href="/checkheart">Check your Heart</a></li>
+          <li><a class="buttonss" href="/previoushealth">Check previous Record of Diabetes</a></li>
+          <li><a class="buttonss" href="#">link 4</a></li>
         </ul>
       </div>
       <div class="sidebar_base"></div>

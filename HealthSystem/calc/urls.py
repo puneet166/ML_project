@@ -18,6 +18,8 @@ urlpatterns=[
     path('checkdiabetes',views.checkdiabetes, name='checkdiabetes'),
     path('checkheart',views.checkheart, name='checkheart'),
     path('previoushealth',views.previoushealth, name='previoushealth'),
+    path('comparehealth',views.comparehealth, name='comparehealth'),
+     path('diet',views.diet, name='diet'),
 
     path('graph',views.graph, name='graph'),
 

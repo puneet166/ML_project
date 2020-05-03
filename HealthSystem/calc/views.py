@@ -15,6 +15,9 @@ def home (request):
     return render(request,'index.html')
 def checkyourhealth(request):
     return render(request,'checkyourhealth.html')
+def diet(request):
+    return render(request,'diet.html') 
+
 
 
 def registration(request):
@@ -269,34 +272,79 @@ def contactus (request):
 
         
 def previoushealth(request):
-    listt=[]
-    sum=0   
-    current_user = request.user
-    current=current_user.id
-    #print(type(current))
-    curr=User.objects.get(id=current)
-    #print(type(curr))
-    curr=curr.id
-    #print(type(curr))
-    values = role.objects.filter(User_mail=curr)#its convert into list
+    if  request.user.is_authenticated:
+
+        listt=[]
+        sum=0   
+        current_user = request.user
+        current=current_user.id
+        #print(type(current))
+        curr=User.objects.get(id=current)
+        #print(type(curr))
+        curr=curr.id
+        #print(type(curr))
+        values = role.objects.filter(User_mail=curr)#its convert into list
     
     
-    for value in values.all():
-         pp=value.role_dia
-         listt.append(pp)
+        for value in values.all():
+            pp=value.role_dia
+            listt.append(pp)
     
-    values = diabetes.objects.get(sno=listt[len(listt)-2])#its convert into list
-    Pregnancies=round((values.Pregnancies*100)/17)
-    Glucose=round((values.Glucose*100)/200)
-    BloodPressure=round((values.BloodPressure*100)/150)
-    SkinThickness=round((values.SkinThickness*100)/100)
-    Insulin=round((values.Insulin*100)/1000)
-    context={'Pregnancies':Pregnancies,'Glucose':Glucose,'BloodPressure':BloodPressure,'SkinThickness':SkinThickness,
+        values = diabetes.objects.get(sno=listt[len(listt)-2])#its convert into list
+        Pregnancies=round((values.Pregnancies*100)/17)
+        Glucose=round((values.Glucose*100)/200)
+        BloodPressure=round((values.BloodPressure*100)/150)
+        SkinThickness=round((values.SkinThickness*100)/100)
+        Insulin=round((values.Insulin*100)/1000)
+        context={'Pregnancies':Pregnancies,'Glucose':Glucose,'BloodPressure':BloodPressure,'SkinThickness':SkinThickness,
             'Insulin':Insulin,'BMI':values.BMI,'DiabetesPedigreeFunction':values.DiabetesPedigreeFunction,'Age':values.Age}
-    print(context)       
-    return render(request,'graph.html',context)
+               
+        return render(request,'graph.html',context)
         #print(values.BMI)
-         
+    else:
+                return redirect('login')
+
+
+
+def comparehealth(request):
+    if  request.user.is_authenticated:
+
+        listt=[]
+        sum=0   
+        current_user = request.user
+        current=current_user.id
+        #print(type(current))
+        curr=User.objects.get(id=current)
+        #print(type(curr))
+        curr=curr.id
+        #print(type(curr))
+        values = role.objects.filter(User_mail=curr)#its convert into list
+    
+    
+        for value in values.all():
+            pp=value.role_dia
+            listt.append(pp)
+    
+        values = diabetes.objects.get(sno=listt[len(listt)-2])#its convert into list
+        Pregnancies=round((values.Pregnancies*100)/17)
+        Glucose=round((values.Glucose*100)/200)
+        BloodPressure=round((values.BloodPressure*100)/150)
+        SkinThickness=round((values.SkinThickness*100)/100)
+        Insulin=round((values.Insulin*100)/1000)
+        if request.method== 'POST':
+
+            contextt={'Pregnanciess':Pregnancies,'Glucosee':Glucose,'BloodPressuree':BloodPressure,'SkinThicknesss':SkinThickness,
+                'Insulinn':Insulin,'BMII':values.BMI,'DiabetesPedigreeFunctionn':values.DiabetesPedigreeFunction,'Agee':values.Age,'check':0    ,'context':context}
+               
+        else:
+             contextt={'Pregnanciess':Pregnancies,'Glucosee':Glucose,'BloodPressuree':BloodPressure,'SkinThicknesss':SkinThickness,
+                'Insulinn':Insulin,'BMII':values.BMI,'DiabetesPedigreeFunctionn':values.DiabetesPedigreeFunction,'Agee':values.Age,'check':1    ,'context':context}
+
+        return render(request,'graphcom.html',contextt)
+    else:
+        return redirect('login')
+
+
 
     
     

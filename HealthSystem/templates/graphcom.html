@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="static/CSS/graphcom.css" />
+  
+    
+</head>
+<body>
+  {% if check %}
+  
+  <div class="split left">
+  <div class="centered">
+
+
+  
+  <section class="bar-graph bar-graph-vertical bar-graph-two">
+    <div class="bar-one bar-container" style="--a:{{Pregnanciess}}%">
+      <div class="bar" data-percentage="{{Pregnanciess}}%"></div>
+      <span class="year">Pregnancies</span>
+    </div>
+    <div class="bar-two bar-container" style="--b:{{Glucosee}}%">
+      <div class="bar" data-percentage="{{Glucosee}}%"></div>
+      <span class="year">Glucose</span>
+    </div>
+    <div class="bar-three bar-container" style="--c:{{BloodPressuree}}%">
+      <div class="bar" data-percentage="{{BloodPressuree}}%"></div>
+      <span class="year">BloodPressure</span>
+    </div>
+    <div class="bar-four bar-container" style="--d:{{SkinThicknesss}}%">
+      <div class="bar" data-percentage="{{SkinThicknesss}}%"></div>
+      <span class="year">SkinThickness</span>
+    </div>
+    <div class="bar-five bar-container" style="--e:{{Insulinn}}%">
+        <div class="bar" data-percentage="{{Insulinn}}%"></div>
+        <span class="year">Insulin</span>
+      </div>
+      <div class="bar-six bar-container" style="--f:{{BMII}}%">
+        <div class="bar" data-percentage="{{BMII}}"></div>
+        <span class="year">BMI</span>
+      </div>
+      <div class="bar-seven bar-container" style="--g:{{DiabetesPedigreeFunctionn}}%">
+        <div class="bar" data-percentage="{{DiabetesPedigreeFunctionn}}"></div>
+        <span class="year">DPF</span>
+      </div>
+    <div class="bar-eight bar-container" style="--h:{{Agee}}%">
+        <div class="bar" data-percentage="{{Agee}}"></div>
+        <span class="year">Age</span>
+      </div>
+      
+      
+      <span class="circle-chart-percentagee circle-chart-one-percentagee">
+        Its Previos Records
+      </span>
+      
+  </section>
+  
+  <section>
+    
+  </section>
+  
+
+
+
+  
+
+    
+</div>
+<h1>
+  <form action="comparehealth" method='POST' >
+    {% csrf_token %}
+    
+    <input type="submit" value="show prbabilty" class='button'> 
+    </form>
+</h1>
+</div>
+
+
+<div class="split right">
+  <div class="centered">
+
+
+         <section class="bar-graph bar-graph-vertical bar-graph-two">
+          <div class="bar-one bar-container" style="--a:{{context.Pregnancies}}%">
+            <div class="bar" data-percentage="{{context.Pregnancies}}%"></div>
+            <span class="year">Pregnancies</span>
+          </div>
+          <div class="bar-two bar-container" style="--b:{{context.Glucose}}%">
+            <div class="bar" data-percentage="{{context.Glucose}}%"></div>
+            <span class="year">Glucose</span>
+          </div>
+          <div class="bar-three bar-container" style="--c:{{context.BloodPressure}}%">
+            <div class="bar" data-percentage="{{context.BloodPressure}}%"></div>
+            <span class="year">BloodPressure</span>
+          </div>
+          <div class="bar-four bar-container" style="--d:{{context.SkinThickness}}%">
+            <div class="bar" data-percentage="{{context.SkinThickness}}%"></div>
+            <span class="year">SkinThickness</span>
+          </div>
+          <div class="bar-five bar-container" style="--e:{{context.Insulin}}%">
+              <div class="bar" data-percentage="{{context.Insulin}}%"></div>
+              <span class="year">Insulin</span>
+            </div>
+            <div class="bar-six bar-container" style="--f:{{context.BMI}}%">
+              <div class="bar" data-percentage="{{context.BMI}}"></div>
+              <span class="year">BMI</span>
+            </div>
+            <div class="bar-seven bar-container" style="--g:{{context.DiabetesPedigreeFunction}}%">
+              <div class="bar" data-percentage="{{context.DiabetesPedigreeFunction}}"></div>
+              <span class="year">DPF</span>
+            </div>
+          <div class="bar-eight bar-container" style="--h:{{context.Age}}%">
+              <div class="bar" data-percentage="{{context.Age}}"></div>
+              <span class="year">Age</span>
+            </div>
+            <span class="circle-chart-percentagee circle-chart-one-percentagee">
+              Its Current Records
+            </span>
+        </section>
+      
+      
+      
+        
+      
+         
+        </div>
+        </div>
+  
+        {% else %}
+
+        <div class="split left">
+          <div class="centeredd">
+        
+              
+            
+           
+           
+
+
+
+        <section class="circle-chart-container">
+          <div class="split left"></div>
+          <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" xmlns="http://www.w3.org/2000/svg">
+              <circle stroke="#FF0000" stroke-width=".5" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+              <circle class="circle-chart-circle" stroke="#FF0000" stroke-width="3" stroke-dasharray="54,100" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+            </svg>
+          <span class="circle-chart-percentage circle-chart-one-percentage">
+              50.1%
+            </span>
+            <h1>
+            
+
+            <span class="circle-chart-percentagee circle-chart-one-percentagee">
+              current probabilty
+            </span>
+          </h1>
+            
+           </section>
+           
+           
+           </div>
+           
+           </div>
+           
+           
+<div class="split right">
+  <div class="centeredd">
+
+   <section class="circle-chart-container">
+          <div class="split left"></div>
+          <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" xmlns="http://www.w3.org/2000/svg">
+              <circle stroke="#FF0000" stroke-width=".5" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+              <circle class="circle-chart-circle" stroke="#FF0000" stroke-width="3" stroke-dasharray="54,100" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+            </svg>
+          <span class="circle-chart-percentage circle-chart-one-percentage">
+              35%
+            </span>
+              <h1>
+            <span class="circle-chart-percentagee circle-chart-one-percentagee">
+              previous probabilty
+            </span>
+          </h1>
+           </section>
+
+</div>
+</div>
+           
+          
+  
+           <a class="btn btn-primary" href="/previoushealth" role="button">Analysis Previous Health</a>
+        {%endif%}
+           
+      
+</body>
+</html>
