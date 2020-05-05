@@ -4,11 +4,12 @@ from rest_framework import viewsets
 from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
 from calc.serializers import diabetesSerializer
-from calc.models import diabetes,heart,query,role
+from calc.models import diabetes,heart,query,role,role_heart
 from calc import diabetesmodel
 import pandas as pd
 from calc import models_heart
 context={'pi':4}
+context_heart={'pp':8}
 
 # Create your views here.
 def home (request):
@@ -130,6 +131,8 @@ def checkdiabetes(request):
             pre=diabetesmodel.prediction(df)
             dia=diabetes.objects.create(Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,SkinThickness=SkinThickness,Insulin=Insulin,BMI=BMI,DiabetesPedigreeFunction=DiabetesPedigreeFunction,Age=Age,Outcome=pre)
             dia.save();
+
+
             info = diabetes.objects.latest('sno')
             info=info.sno
                         
@@ -180,19 +183,6 @@ def checkdiabetes(request):
          return redirect('login')
 
 
-def graph(request):
-    if  request.user.is_authenticated:
-
-        if request.method== 'POST':
-            global context
-            
-            return render(request,'graph.html',context)
-
-
-        
-    else:      
-        return render(request,'login.html')
-
 
 def checkheart(request):
     if  request.user.is_authenticated:
@@ -230,11 +220,43 @@ def checkheart(request):
                 slope=int(slope)
                 ca=int(ca)
                 thal=int(thal)
+                global context_heart
+
+
+
+
+
                 x = [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]]
                 df=pd.DataFrame(x,index=[0])
                 pre=models_heart.prediction(df)
                 dia=heart.objects.create(age=age,sex=sex,cp=cp,trestbps=trestbps,chol=chol,fbs=fbs,restecg=restecg,thalach=thalach,exang=exang,oldpeak=oldpeak,slope=slope,ca=ca,thal=thal,target=pre)
                 dia.save();
+
+                info = heart.objects.latest('sno_heart')
+
+                info=info.sno_heart
+
+                current_user = request.user
+                current=current_user.id
+            
+
+                curr=User.objects.get(id=current)
+                curr=curr.id
+
+                dia1=role_heart.objects.create(role_heart=info,User_id=curr)
+                dia1.save();
+                # correct 
+
+                trestbps=round((trestbps*100)/200)
+                chol=round((chol*100)/700)
+                fbs=round((fbs*100)/300)
+                thalach=round((thalach*100)/250)
+                context_heart={'age':age,'sex':sex,'cp':cp,
+                    'trestbps':trestbps,'chol':chol,'fbs':fbs,'restecg':restecg ,'thalach':thalach,
+                    'exang':exang,'oldpeak':oldpeak,'slope':slope,'ca':ca,'thal':thal}
+                
+            
+
 
 
                 for i in pre:
@@ -270,12 +292,17 @@ def contactus (request):
     else:
         return render(request,'contactus.html')
 
+
+
+
+        #here all methods about diabetes graphs
+
         
 def previoushealth(request):
     if  request.user.is_authenticated:
 
         listt=[]
-        sum=0   
+        
         current_user = request.user
         current=current_user.id
         #print(type(current))
@@ -299,7 +326,7 @@ def previoushealth(request):
         context={'Pregnancies':Pregnancies,'Glucose':Glucose,'BloodPressure':BloodPressure,'SkinThickness':SkinThickness,
             'Insulin':Insulin,'BMI':values.BMI,'DiabetesPedigreeFunction':values.DiabetesPedigreeFunction,'Age':values.Age}
                
-        return render(request,'graph.html',context)
+        return render(request,'diabetesgraph.html',context)
         #print(values.BMI)
     else:
                 return redirect('login')
@@ -310,7 +337,7 @@ def comparehealth(request):
     if  request.user.is_authenticated:
 
         listt=[]
-        sum=0   
+          
         current_user = request.user
         current=current_user.id
         #print(type(current))
@@ -340,9 +367,130 @@ def comparehealth(request):
              contextt={'Pregnanciess':Pregnancies,'Glucosee':Glucose,'BloodPressuree':BloodPressure,'SkinThicknesss':SkinThickness,
                 'Insulinn':Insulin,'BMII':values.BMI,'DiabetesPedigreeFunctionn':values.DiabetesPedigreeFunction,'Agee':values.Age,'check':1    ,'context':context}
 
-        return render(request,'graphcom.html',contextt)
+        return render(request,'diabetes_graph_com.html',contextt)
     else:
         return redirect('login')
+
+def graph(request):
+    if  request.user.is_authenticated:
+
+        if request.method== 'POST':
+           global context
+            
+           return render(request,'diabetesgraph.html',context)
+
+
+        
+    else:      
+        return render(request,'login.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# here all function about heart graphs
+
+def previousheart(request):
+    if  request.user.is_authenticated:
+
+        listt=[]
+        
+        current_user = request.user
+        current=current_user.id
+        #print(type(current))
+        curr=User.objects.get(id=current)
+        #print(type(curr))
+        curr=curr.id
+        #print(type(curr))
+        values = role_heart.objects.filter(User_id=curr)#its convert into list
+    
+    
+        for value in values.all():
+            pp=value.role_heart
+            listt.append(pp)
+    
+        values = heart.objects.get(sno_heart=listt[len(listt)-2])#its convert into list
+        trestbps=round((values.trestbps*100)/200)
+        chol=round((values.chol*100)/700)
+        fbs=round((values.fbs*100)/300)
+        thalach=round((values.thalach*100)/250)
+        context_heart={'age':values.age,'sex':values.sex,'cp':values.cp,
+                    'trestbps':trestbps,'chol':chol,'fbs':fbs,'restecg':values.restecg ,'thalach':thalach,
+                    'exang':values.exang,'oldpeak':values.oldpeak,'slope':values.slope,'ca':values.ca,'thal':values.thal}       
+        return render(request,'heart_graph.html',context_heart)
+        #print(values.BMI)
+    else:
+                return redirect('login')
+
+
+
+def compareheart(request):
+    if  request.user.is_authenticated:
+
+        listt=[]
+        
+        current_user = request.user
+        current=current_user.id
+        #print(type(current))
+        curr=User.objects.get(id=current)
+        #print(type(curr))
+        curr=curr.id
+        #print(type(curr))
+        values = role_heart.objects.filter(User_id=curr)#its convert into list
+    
+    
+        for value in values.all():
+            pp=value.role_heart
+            listt.append(pp)
+    
+        values = heart.objects.get(sno_heart=listt[len(listt)-2])#its convert into list
+        trestbps=round((values.trestbps*100)/200)
+        chol=round((values.chol*100)/700)
+        fbs=round((values.fbs*100)/300)
+        thalach=round((values.thalach*100)/250)
+        
+        if request.method== 'POST':
+
+             contexttt={'agee':values.age,'sexx':values.sex,'cpp':values.cp,
+                    'trestbpss':trestbps,'choll':chol,'fbss':fbs,'restecgg':values.restecg ,'thalachh':thalach,
+                    'exangg':values.exang,'oldpeakk':values.oldpeak,'slopee':values.slope,'caa':values.ca,'thall':values.thal,'check':0,'context_heart':context_heart}  
+               
+        else:
+             contexttt={'agee':values.age,'sexx':values.sex,'cpp':values.cp,
+                    'trestbpss':trestbps,'choll':chol,'fbss':fbs,'restecgg':values.restecg ,'thalachh':thalach,
+                    'exangg':values.exang,'oldpeakk':values.oldpeak,'slopee':values.slope,'caa':values.ca,'thall':values.thal,'check':1,'context_heart':context_heart}  
+
+        return render(request,'heart_graph_com.html',contexttt)
+    else:
+        return redirect('login')
+
+def graphheart(request):
+    if  request.user.is_authenticated:
+
+        if request.method== 'POST':
+           global context_heart
+            
+           return render(request,'heart_graph.html',context_heart)
+
+
+        
+    else:      
+        return render(request,'login.html')
+
 
 
 

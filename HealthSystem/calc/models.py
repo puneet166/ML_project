@@ -56,12 +56,20 @@ class heart(models.Model):
     ca=models.IntegerField()
     thal=models.IntegerField()
     target=models.IntegerField(default=2)
+
+    # its diabetes roles model
 class role(models.Model):
     
 
     role_dia=models.IntegerField()
     User_mail=models.IntegerField()
 
+
+class role_heart(models.Model):
+    
+
+    role_heart=models.IntegerField()
+    User_id=models.IntegerField()
 
 class query(models.Model):
     Name=models.CharField(max_length=200)

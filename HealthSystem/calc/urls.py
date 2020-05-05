@@ -19,11 +19,14 @@ urlpatterns=[
     path('checkheart',views.checkheart, name='checkheart'),
     path('previoushealth',views.previoushealth, name='previoushealth'),
     path('comparehealth',views.comparehealth, name='comparehealth'),
-     path('diet',views.diet, name='diet'),
+    path('diet',views.diet, name='diet'),
 
     path('graph',views.graph, name='graph'),
 
-    
+    path('previousheart',views.previousheart, name='previousheart'),
+    path('compareheart',views.compareheart, name='compareheart'),
+    path('graphheart',views.graphheart, name='graphheart'),
+   
     path('api',include(router.urls)), #its for API Routers
     #path('model',views.create),
     #pat,views.logout, name='logout'),

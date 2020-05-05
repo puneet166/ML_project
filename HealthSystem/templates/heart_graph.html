@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<head>
+  
+ 
+  <style>
+    body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  background-color: white		;
+}
+
+/* Bar Graph Vertical */
+.bar-graph .year {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+}
+
+.bar-graph-vertical {
+  margin-top: 80px;
+  
+}
+.buttonss {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.bar-graph-vertical .bar-container {
+  float: left;
+  height: 500px;
+  margin-right: 30px;
+  position: relative;
+  text-align: center;
+  width: 40px;
+}
+
+.bar-graph-vertical .bar {
+  border-radius: 3px;
+  bottom: 40px;
+  position: absolute;
+  width: 40px;
+}
+
+.bar-graph-vertical .year {
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.bar-graph-two .bar::after {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  color: white;
+  content: attr(data-percentage);
+  font-weight: 700;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  text-align: left;
+  top: 24px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.bar-graph-two .bar-one .bar {
+  background-color: #90EE90;
+  -webkit-animation: show-bar-one-vertical 1.2s 0.1s forwards;
+  -moz-animation: show-bar-one-vertical 1.2s 0.1s forwards;
+  animation: show-bar-one-vertical 1.2s 0.1s forwards;
+}
+
+.bar-graph-two .bar-two .bar {
+  background-color: #5292ac;
+  -webkit-animation: show-bar-two-vertical 1.2s 0.2s forwards;
+  -moz-animation: show-bar-two-vertical 1.2s 0.2s forwards;
+  animation: show-bar-two-vertical 1.2s 0.2s forwards;
+}
+
+.bar-graph-two .bar-three .bar {
+  background-color: #407286;
+  -webkit-animation: show-bar-three-vertical 1.2s 0.3s forwards;
+  -moz-animation: show-bar-three-vertical 1.2s 0.3s forwards;
+  animation: show-bar-three-vertical 1.2s 0.3s forwards;
+}
+
+.bar-graph-two .bar-four .bar {
+  background-color: #800080
+;
+  -webkit-animation: show-bar-four-vertical 1.2s 0.4s forwards;
+  -moz-animation: show-bar-four-vertical 1.2s 0.4s forwards;
+  animation: show-bar-four-vertical 1.2s 0.4s forwards;
+}
+.bar-graph-two .bar-five .bar {
+  background-color: #F0E68C;
+  -webkit-animation: show-bar-five-vertical 1.2s 0.5s forwards;
+  -moz-animation: show-bar-five-vertical 1.2s 0.5s forwards;
+  animation: show-bar-five-vertical 1.2s 0.5s forwards;
+  
+}
+.bar-graph-two .bar-six .bar {
+  background-color: yellow;
+  -webkit-animation: show-bar-six-vertical 1.2s 0.6s forwards;
+  -moz-animation: show-bar-six-vertical 1.2s 0.6s forwards;
+  animation: show-bar-six-vertical 1.2s 0.6s forwards;
+  
+}
+.bar-graph-two .bar-seven .bar {
+  background-color: Tomato;
+  -webkit-animation: show-bar-seven-vertical 1.2s 0.7s forwards;
+  -moz-animation: show-bar-seven-vertical 1.2s 0.7s forwards;
+  animation: show-bar-seven-vertical 1.2s 0.7s forwards;
+}
+
+.bar-graph-two .bar-eight .bar {
+  background-color: Violet;
+  -webkit-animation: show-bar-eight-vertical 1.2s 0.8s forwards;
+  -moz-animation: show-bar-eight-vertical 1.2s 0.8s forwards;
+  animation: show-bar-eight-vertical 1.2s 0.8s forwards;
+}
+
+.bar-graph-two .bar-nine .bar {
+  background-color: aqua;
+  -webkit-animation: show-bar-nine-vertical 1.2s 0.9s forwards;
+  -moz-animation: show-bar-nine-vertical 1.2s 0.9s forwards;
+  animation: show-bar-nine-vertical 1.2s 0.9s forwards;
+}
+.bar-graph-two .bar-ten .bar {
+  background-color: brown;
+  -webkit-animation: show-bar-ten-vertical 1.2s 0.10s forwards;
+  -moz-animation: show-bar-ten-vertical 1.2s 0.10s forwards;
+  animation: show-bar-ten-vertical 1.2s 0.10s forwards;
+}
+.bar-graph-two .bar-eleven .bar {
+  background-color: darkgoldenrod;
+  -webkit-animation: show-bar-eleven-vertical 1.2s 0.11s forwards;
+  -moz-animation: show-bar-eleven-vertical 1.2s 0.11s forwards;
+  animation: show-bar-eleven-vertical 1.2s 0.11s forwards;
+}
+.bar-graph-two .bar-tweleve .bar {
+  background-color: lawngreen;
+  -webkit-animation: show-bar-tweleve-vertical 1.2s 0.12s forwards;
+  -moz-animation: show-bar-tweleve-vertical 1.2s 0.12s forwards;
+  animation: show-bar-tweleve-vertical 1.2s 0.12s forwards;
+}
+.bar-graph-two .bar-thirteen .bar {
+  background-color: brown;
+  -webkit-animation: show-bar-thirteen-vertical 1.2s 0.13s forwards;
+  -moz-animation: show-bar-thirteen-vertical 1.2s 0.13s forwards;
+  animation: show-bar-thirteen-vertical 1.2s 0.13s forwards;
+}
+
+
+
+
+/* Bar Graph Vertical Animations */
+@-webkit-keyframes show-bar-one-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--a);
+  }
+}
+
+@-webkit-keyframes show-bar-two-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 35%;
+  }
+}
+
+@-webkit-keyframes show-bar-three-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 40%;
+  }
+}
+
+@-webkit-keyframes show-bar-four-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--d);
+  }
+}
+
+@-webkit-keyframes show-bar-five-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--e);
+  }
+}
+
+@-webkit-keyframes show-bar-six-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--f);
+  }
+}
+
+@-webkit-keyframes show-bar-seven-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 65%;
+  }
+}
+
+@-webkit-keyframes show-bar-eight-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--h);
+  }
+}
+
+@-webkit-keyframes show-bar-nine-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 50%;
+  }
+}
+@-webkit-keyframes show-bar-ten-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--i);
+  }
+}
+@-webkit-keyframes show-bar-eleven-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 25%;
+  }
+}
+@-webkit-keyframes show-bar-tweleve-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 30%;
+  }
+}
+
+@-webkit-keyframes show-bar-thirteen-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 65%;
+  }
+}
+
+
+@-webkit-keyframes fade-in-text {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+/* Circle Chart */
+.circle-chart-container {
+  clear: right;
+  float: right;
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+.circle-chart {
+  overflow: visible;
+}
+
+.circle-chart-circle {
+  animation: circle-chart-fill 1.35s reverse;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+
+.circle-chart-percentage {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  font-size: 22px;
+  font-weight: 700;
+  position: absolute;
+}
+
+
+.circle-chart-one-percentage {
+  color: red;
+  left: 250px;
+  top: 250px;
+}
+h2{
+background-color: red ;
+}
+
+
+@keyframes circle-chart-fill {
+  to { stroke-dasharray: 0 ; }
+}
+
+
+
+
+
+
+.button {
+background-color: red;
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+}
+
+.
+  .buttonss {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+  </style>
+  
+    
+</head>
+<body>
+
+
+
+  
+<section class="bar-graph bar-graph-vertical bar-graph-two" >
+    <div class="bar-one bar-container" style="--a:{{age}}%">
+      <div class="bar" data-percentage="{{age}}"></div>
+      <span class="year">age</span>
+    </div>
+    {% if sex == 1 %}
+    <div class="bar-two bar-container">
+      <div class="bar" data-percentage="Male"></div>
+      <span class="year">Gender</span>
+    </div>
+    {% else %}
+    <div class="bar-two bar-container">
+      <div class="bar" data-percentage="Female"></div>
+      <span class="year">Gender</span>
+    </div>
+    {% endif %}
+
+
+    {% if cp == 1 %}
+    <div class="bar-three bar-container" >
+      <div class="bar" data-percentage="Typical angina "></div>
+      <span class="year">trestbps</span>
+    </div>
+    {% elif cp == 2 %}
+    <div class="bar-three bar-container" >
+      <div class="bar" data-percentage="ATypical angina "></div>
+      <span class="year">trestbps</span>
+    </div>
+    {% elif cp == 3 %}
+    <div class="bar-three bar-container" >
+      <div class="bar" data-percentage="Non angina "></div>
+      <span class="year">trestbps</span>
+    </div>
+    {% else %}
+    <div class="bar-three bar-container" >
+      <div class="bar" data-percentage="Asymptotic "></div>
+      <span class="year">trestbps</span>
+    </div>
+    {% endif %}
+
+
+    <div class="bar-four bar-container" style="--d:{{trestbps}}%">
+      <div class="bar" data-percentage="{{trestbps}}%"></div>
+      <span class="year">trestbps</span>
+    </div>
+    <div class="bar-five bar-container" style="--e:{{chol}}%">
+        <div class="bar" data-percentage="{{chol}}%"></div>
+        <span class="year">chol</span>
+      </div>
+      <div class="bar-six bar-container" style="--h:{{fbs}}%">
+        <div class="bar" data-percentage="{{fbs}}%"></div>
+        <span class="year">fbs</span>
+      </div>
+      {% if restecg == 0 %}
+      <div class="bar-seven bar-container" >
+        <div class="bar" data-percentage="Normal"></div>
+        <span class="year">restecg</span>
+      </div>
+      {% elif restecg == 1 %}
+      <div class="bar-seven bar-container" >
+        <div class="bar" data-percentage="ST-T Wave abnormally"></div>
+        <span class="year">restecg</span>
+      </div>
+      {% else %}
+      <div class="bar-seven bar-container" >
+        <div class="bar" data-percentage="Left ventricular hyperthrophy"></div>
+        <span class="year">restecg</span>
+      </div>
+      {% endif %}
+      <div class="bar-eight bar-container" style="--h:{{thalach}}%">
+        <div class="bar" data-percentage="{{thalach}}%"></div>
+        <span class="year">thalach</span>
+      </div>
+      {% if exang == 1 %}
+      <div class="bar-nine bar-container">
+        <div class="bar" data-percentage="Yes"></div>
+        <span class="year">exang</span>
+      </div>
+      {% else %}
+      <div class="bar-nine bar-container">
+        <div class="bar" data-percentage="No"></div>
+        <span class="year">exang</span>
+      </div>
+      {% endif %}
+      <div class="bar-ten bar-container" style="--i:{{oldpeak}}%">
+        <div class="bar" data-percentage="{{oldpeak}}%"></div>
+        <span class="year">oldpeak</span>
+      </div>
+      {% if slope == 1 %}
+      <div class="bar-eleven bar-container">
+        <div class="bar" data-percentage="upsloping"></div>
+        <span class="year">slope</span>
+      </div>
+      {% elif slope == 2 %}
+      <div class="bar-eleven bar-container">
+        <div class="bar" data-percentage="flat"></div>
+        <span class="year">slope</span>
+      </div>
+      {% else %}
+      <div class="bar-eleven bar-container">
+        <div class="bar" data-percentage="downsloping"></div>
+        <span class="year">slope</span>
+      </div>
+      {% endif %}
+
+      {% if ca == 1 %}
+      <div class="bar-tweleve bar-container">
+        <div class="bar" data-percentage="upsloping"></div>
+        <span class="year">CA</span>
+      </div>
+
+      {% elif ca == 2 %}
+      <div class="bar-tweleve bar-container">
+        <div class="bar" data-percentage="flat"></div>
+        <span class="year">CA</span>
+      </div>
+      {% else %}
+      <div class="bar-tweleve bar-container">
+        <div class="bar" data-percentage="downsloping"></div>
+        <span class="year">CA</span>
+      </div>
+      {% endif %}
+
+      {% if thal == 1 %}
+      <div class="bar-thirteen bar-container">
+        <div class="bar" data-percentage="upsloping"></div>
+        <span class="year">Thal</span>
+      </div>
+      {% elif thal == 2 %}
+      <div class="bar-thirteen bar-container">
+        <div class="bar" data-percentage="flat"></div>
+        <span class="year">Thal</span>
+      </div>
+      {% else %}
+        <div class="bar-thirteen bar-container">
+          <div class="bar" data-percentage="downsloping></div>
+          <span class="year">Thal</span>
+        </div>
+        {% endif %}
+      
+
+
+      
+
+
+
+    
+      
+  </section>
+
+
+
+  
+
+    <section class="circle-chart-container">
+        <div class="split left"></div>
+        <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" xmlns="http://www.w3.org/2000/svg">
+            <circle stroke="#FF0000" stroke-width=".5" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+            <circle class="circle-chart-circle" stroke="#FF0000" stroke-width="3" stroke-dasharray="54,100" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+          </svg>
+        <span class="circle-chart-percentage circle-chart-one-percentage">
+            38.8%
+          </span>
+
+          
+            
+          
+         </section>
+         
+ 
+<section>
+  <a class="buttonss" href="/compareheart" role="button">Compare this health to the previous health</a>
+
+</section>
+<section>
+
+         <a class="button" href="/previousheart" role="button">Analysis Previous Health</a>
+        </section>
+    
+</body> 
+</html>

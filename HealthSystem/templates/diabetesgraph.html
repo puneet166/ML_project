@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="static/CSS/graphs.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .buttonss {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+  </style>
+  
+    
+</head>
+<body>
+
+
+
+  
+<section class="bar-graph bar-graph-vertical bar-graph-two">
+    <div class="bar-one bar-container" style="--a:{{Pregnancies}}%">
+      <div class="bar" data-percentage="{{Pregnancies}}%"></div>
+      <span class="year">Pregnancies</span>
+    </div>
+    <div class="bar-two bar-container" style="--b:{{Glucose}}%">
+      <div class="bar" data-percentage="{{Glucose}}%"></div>
+      <span class="year">Glucose</span>
+    </div>
+    <div class="bar-three bar-container" style="--c:{{BloodPressure}}%">
+      <div class="bar" data-percentage="{{BloodPressure}}%"></div>
+      <span class="year">BloodPressure</span>
+    </div>
+    <div class="bar-four bar-container" style="--d:{{SkinThickness}}%">
+      <div class="bar" data-percentage="{{SkinThickness}}%"></div>
+      <span class="year">SkinThickness</span>
+    </div>
+    <div class="bar-five bar-container" style="--e:{{Insulin}}%">
+        <div class="bar" data-percentage="{{Insulin}}%"></div>
+        <span class="year">Insulin</span>
+      </div>
+      <div class="bar-six bar-container" style="--f:{{BMI}}%">
+        <div class="bar" data-percentage="{{BMI}}"></div>
+        <span class="year">BMI</span>
+      </div>
+      <div class="bar-seven bar-container" style="--g:{{DiabetesPedigreeFunction}}%">
+        <div class="bar" data-percentage="{{DiabetesPedigreeFunction}}"></div>
+        <span class="year">DPF</span>
+      </div>
+    <div class="bar-eight bar-container" style="--h:{{Age}}%">
+        <div class="bar" data-percentage="{{Age}}"></div>
+        <span class="year">Age</span>
+      </div>
+  </section>
+
+
+
+  
+
+    <section class="circle-chart-container">
+        <div class="split left"></div>
+        <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" xmlns="http://www.w3.org/2000/svg">
+            <circle stroke="#FF0000" stroke-width=".5" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+            <circle class="circle-chart-circle" stroke="#FF0000" stroke-width="3" stroke-dasharray="54,100" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+          </svg>
+        <span class="circle-chart-percentage circle-chart-one-percentage">
+            50.1%
+          </span>
+
+          
+            
+          
+         </section>
+         
+ 
+<section>
+  <a class="buttonss" href="/comparehealth" role="button">Compare this health to the previous health</a>
+
+</section>
+<section>
+
+         <a class="button" href="/previoushealth" role="button">Analysis Previous Health</a>
+        </section>
+    
+</body>
+</html>

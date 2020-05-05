@@ -1,2 +1,61 @@
-<!DOCTYPE html>
-<h1>Singh 1</h1>
+{% extends 'Header.html' %}
+{%block index %}
+<head>
+  <style>
+  p{text-align: center;}
+  h1{text-align: center;}
+
+  .banner {
+   
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    padding: 0px;
+    height:200px;
+    background-size: cover;
+    background: url('https://media.giphy.com/media/3o7TKnoepJ80Pyfru8/giphy.gif');
+    color:#fff;
+    text-align: center;
+    padding: 40px 15px;
+   }
+   .big-text{
+     font-size: 130px;
+     font-weight: 800;
+   }
+
+   .buttonss {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+  </style>
+</head>
+  <div class="banner"> </div>
+  <h1>
+    <form action="graphheart" method='POST' >
+      {% csrf_token %}
+      
+      <input type="submit" value="Analysis The Health" class='buttonss'> 
+    </form>
+    </form>
+  </h1>
+    <!-- insert the page content here -->
+    <h1 style="color:red;">YOU ARE UNDER Heart Disease</h1>
+    <p>Heart mellitus, commonly known as Heart, is a metabolic disease that causes high blood sugar. The hormone insulin moves sugar from the blood into your cells to be stored or used for energy. With diabetes, your body either doesn’t make enough insulin or can’t effectively use the insulin it does make.
+
+    </p>
+    
+  </div>
+</div>
+{% include "footer.html" %}  
+
+</div>
+{% endblock %}
