@@ -427,17 +427,17 @@
       {% endif %}
   
   
-      {% if cp == 1 %}
+      {% if cpp == 1 %}
       <div class="bar-three bar-container" >
         <div class="bar" data-percentage="Typical angina "></div>
         <span class="year">trestbps</span>
       </div>
-      {% elif cp == 2 %}
+      {% elif cpp == 2 %}
       <div class="bar-three bar-container" >
         <div class="bar" data-percentage="ATypical angina "></div>
         <span class="year">trestbps</span>
       </div>
-      {% elif cp == 3 %}
+      {% elif cpp == 3 %}
       <div class="bar-three bar-container" >
         <div class="bar" data-percentage="Non angina "></div>
         <span class="year">trestbps</span>
@@ -462,12 +462,12 @@
           <div class="bar" data-percentage="{{fbss}}%"></div>
           <span class="year">fbs</span>
         </div>
-        {% if restecg == 0 %}
+        {% if restecgg == 0 %}
         <div class="bar-seven bar-container" >
           <div class="bar" data-percentage="Normal"></div>
           <span class="year">restecg</span>
         </div>
-        {% elif restecg == 1 %}
+        {% elif restecgg == 1 %}
         <div class="bar-seven bar-container" >
           <div class="bar" data-percentage="ST-T Wave abnormally"></div>
           <span class="year">restecg</span>
@@ -482,7 +482,7 @@
           <div class="bar" data-percentage="{{thalachh}}%"></div>
           <span class="year">thalach</span>
         </div>
-        {% if exang == 1 %}
+        {% if exangg == 1 %}
         <div class="bar-nine bar-container">
           <div class="bar" data-percentage="Yes"></div>
           <span class="year">exang</span>
@@ -497,12 +497,12 @@
           <div class="bar" data-percentage="{{oldpeakk}}%"></div>
           <span class="year">oldpeak</span>
         </div>
-        {% if slope == 1 %}
+        {% if slopee == 1 %}
         <div class="bar-eleven bar-container">
           <div class="bar" data-percentage="upsloping"></div>
           <span class="year">slope</span>
         </div>
-        {% elif slope == 2 %}
+        {% elif slopee == 2 %}
         <div class="bar-eleven bar-container">
           <div class="bar" data-percentage="flat"></div>
           <span class="year">slope</span>
@@ -514,13 +514,13 @@
         </div>
         {% endif %}
   
-        {% if ca == 1 %}
+        {% if caa == 1 %}
         <div class="bar-tweleve bar-container">
           <div class="bar" data-percentage="upsloping"></div>
           <span class="year">CA</span>
         </div>
   
-        {% elif ca == 2 %}
+        {% elif caa == 2 %}
         <div class="bar-tweleve bar-container">
           <div class="bar" data-percentage="flat"></div>
           <span class="year">CA</span>
@@ -532,12 +532,12 @@
         </div>
         {% endif %}
   
-        {% if thal == 1 %}
+        {% if thall == 1 %}
         <div class="bar-thirteen bar-container">
           <div class="bar" data-percentage="upsloping"></div>
           <span class="year">Thal</span>
         </div>
-        {% elif thal == 2 %}
+        {% elif thall == 2 %}
         <div class="bar-thirteen bar-container">
           <div class="bar" data-percentage="flat"></div>
           <span class="year">Thal</span>
