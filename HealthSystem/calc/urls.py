@@ -28,6 +28,11 @@ urlpatterns=[
     path('password_reset_done',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),
     path("password_reset_confirm/<uidb64>/<token>/",auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'),name='password_reset_confirm'),
     path("password_reset_complete",auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),name='password_reset_complete'),
+    # its all change password
+    path('password_change',auth_views.PasswordChangeView.as_view(template_name='password_change.html'),name='password_change'),
+    path('password_change_done',auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),name='password_change_done'),
+
+
     #its all heart graphs
     path('previousheart',views.previousheart, name='previousheart'),
     path('compareheart',views.compareheart, name='compareheart'),
