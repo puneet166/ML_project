@@ -2,6 +2,11 @@
 <html>
 
 <head>
+  <style>
+    ul{
+      color:white;
+    }
+  </style>
   <title>HealthCare System</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
@@ -61,10 +66,10 @@
 
 
           {% if user.is_authenticated %}
-          <li>Hello,{{user.first_name}}</li>
+          
                <a class="btn btn-primary" href="/password_change" role="button">Change Password</a>
                <a class="btn btn-primary" href="/logout" role="button">LogOut </a>
-
+               <li>Hello,{{user.first_name}}</li>
           {% else %}
           <a class="btn btn-primary" href="/registration" role="button">Registration</a>
 

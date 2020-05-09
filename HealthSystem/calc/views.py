@@ -18,6 +18,10 @@ def checkyourhealth(request):
     return render(request,'checkyourhealth.html')
 def diet(request):
     return render(request,'diet.html') 
+def factorofgoodhealth(request):
+    return render(request,'factorgoodhealth.html') 
+
+
 
 
 

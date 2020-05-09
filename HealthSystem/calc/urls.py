@@ -21,6 +21,7 @@ urlpatterns=[
     path('previoushealth',views.previoushealth, name='previoushealth'),
     path('comparehealth',views.comparehealth, name='comparehealth'),
     path('diet',views.diet, name='diet'),
+    path('factorofgoodhealth',views.factorofgoodhealth, name='factorofgoodhealth'),
 
     path('graph',views.graph, name='graph'),
     # all for reset password
